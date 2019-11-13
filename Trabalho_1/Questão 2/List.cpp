@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <climits>
-#include "QX_List.h"
+#include "List.h"
 using namespace std;
 
 struct Node {
@@ -13,27 +13,27 @@ struct Node {
     Node *prev;
 };
 
-Node* QX_List::search (int key) {
+Node* List::search (int key) {
     Node *aux = head->next;
     while(aux != head && aux->key != key)
         aux = aux->next; 
     return (aux == head) ? NULL : aux;
 }
 
-QX_List::QX_List() {
+List::List() {
     head = new Node;
     head->key = 0;
     head->next = head;
     head->prev = head;
 }
 
-QX_List::~QX_List() {
+List::~List() {
     clear();
     delete head;
     cout << "Lista destruída" << endl;
 }
 
-void QX_List::push_back (int key) {
+void List::push_back (int key) {
         Node *added = new Node;
         (head->prev)->next = added;
         added->key = key;
@@ -42,7 +42,7 @@ void QX_List::push_back (int key) {
         head->prev = added;
 }
 
-int QX_List::pop_back() {
+int List::pop_back() {
     if (!is_empty()) {
         int returnable_value = (head->prev)->key;
         Node *aux = head->prev;
@@ -55,7 +55,7 @@ int QX_List::pop_back() {
     return INT_MIN;
 }
 
-void QX_List::insert_after (int key, int index) {
+void List::insert_after (int key, int index) {
     if (index >= 0 && index < size()) {
         Node *aux = head->next;
         for (int i = 0; i < index; i++)
@@ -70,7 +70,7 @@ void QX_List::insert_after (int key, int index) {
     else cerr << "Índice inválido" << endl;
 }
 
-void QX_List::remove (int key) {
+void List::remove (int key) {
     Node *aux = head->next;
     while (aux != head) {
         if (aux->key == key) {
@@ -87,7 +87,7 @@ void QX_List::remove (int key) {
     cerr << "Valor não encontrado" << endl;
 }
 
-void QX_List::remove_all (int key) {
+void List::remove_all (int key) {
     Node *aux = head->next;
     int flag = 0;
     while (aux != head) {
@@ -109,7 +109,7 @@ void QX_List::remove_all (int key) {
         cerr << "Valor não encontrado" << endl;
 }
 
-void QX_List::remove_node (Node *x) {
+void List::remove_node (Node *x) {
     (x->prev)->next = x->next;
     (x->next)->prev = x->prev;
     x->next = NULL;
@@ -117,7 +117,7 @@ void QX_List::remove_node (Node *x) {
     delete x;
 }
 
-int QX_List::remove_node_at (int index) {
+int List::remove_node_at (int index) {
     Node *aux = head->next;
     for (int i = 0; i < index; i++)
         aux = aux->next;
@@ -130,7 +130,7 @@ int QX_List::remove_node_at (int index) {
     return returnable;
 }
 
-void QX_List::print() {
+void List::print() {
     Node *aux = head->next;
     while (aux != head) {
         cout << aux->key << " ";
@@ -139,7 +139,7 @@ void QX_List::print() {
     cout << endl;
 }
 
-void QX_List::print_reverse() {
+void List::print_reverse() {
     Node *aux = head->prev;
     while (aux != head) {
         cout << aux->key << " ";
@@ -148,11 +148,11 @@ void QX_List::print_reverse() {
     cout << endl;
 }
 
-bool QX_List::is_empty() {
+bool List::is_empty() {
     return (head->next == head);
 }
 
-int QX_List::size() {
+int List::size() {
     int count = 0;
     Node *aux = head->next;
     while (aux != head) {
@@ -162,7 +162,7 @@ int QX_List::size() {
     return count;
 }
 
-void QX_List::clear() {
+void List::clear() {
     if (!is_empty()) {
         Node *aux_forward;
         Node *aux_back;
@@ -180,7 +180,7 @@ void QX_List::clear() {
         cerr << "A lista já está vazia" << endl;
 }
 
-void QX_List::concat (QX_List *list2) {
+void List::concat (List *list2) {
     while (!list2->is_empty()) {
         Node *aux = (list2->head)->next;
         push_back(aux->key);
@@ -189,8 +189,8 @@ void QX_List::concat (QX_List *list2) {
     cout << "Listas concatenadas com sucesso" << endl;
 }
 
-QX_List* QX_List::copy() {
-    QX_List *list_copy = new QX_List();
+List* List::copy() {
+    List *list_copy = new List();
     Node *aux = head->next;
     while (aux != head) {
         list_copy->push_back(aux->key);
@@ -199,13 +199,13 @@ QX_List* QX_List::copy() {
     return list_copy;
 }
 
-void QX_List::copy_array (int *array, int array_size) {
+void List::copy_array (int *array, int array_size) {
     for (int i = 0; i < array_size; i++)
         push_back(array[i]);
     cout << "Array copiado para a lista" << endl;
 }
 
-bool QX_List::equal (QX_List *list2) {
+bool List::equal (List *list2) {
     if (size() != list2->size()) return false;    
     Node *aux1 = head->next;
     Node *aux2 = (list2->head)->next;
@@ -217,11 +217,14 @@ bool QX_List::equal (QX_List *list2) {
     return true;
 }
 
-QX_List* QX_List::separate (int value) {
+/*
+Função falha
+
+List* List::separate (int value) {
     Node *pre_fork = search(value);
     if (pre_fork != NULL) {
         Node *fork = pre_fork->next;
-        QX_List *list2 = new QX_List();
+        List *list2 = new List();
         while (fork != head) {
             list2->push_back(fork->key);
             remove_node(fork);
@@ -233,8 +236,9 @@ QX_List* QX_List::separate (int value) {
         return this;
     }
 }
+*/
 
-void QX_List::merge_lists (QX_List *list2) {
+void List::merge_lists (List *list2) {
     int index = 0;
     while (!list2->is_empty()) {
         Node *aux2 = (list2->head)->next;
