@@ -1,6 +1,6 @@
-//Nome: Fábio Luz Duarte Filho
-//Matrícula: 474027
-//Curso: Ciência da Computação
+/*
+    Author: Fábio Luz Duarte Filho
+*/
 
 #include <iostream>
 using namespace std;
