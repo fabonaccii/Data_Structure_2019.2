@@ -1,5 +1,5 @@
 /*
-    Nome: Fábio Luz Duarte Filho
+    Author: Fábio Luz Duarte Filho
 */
 
 #ifndef TREE_H
