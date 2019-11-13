@@ -1,6 +1,5 @@
 /*
     Nome: Fábio Luz Duarte Filho
-    Matrícula: 474027
 */
 
 #include <iostream>
