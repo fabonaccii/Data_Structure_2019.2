@@ -1,15 +1,13 @@
 /*
-    Nome: Fábio Luz Duarte Filho
-    Matrícula: 474027
-    Curso: Ciência da Computação
+    Author: Fábio Luz Duarte Filho
 */
 
 #include <iostream>
-#include "QX_List.h"
+#include "List.h"
 using namespace std;
 
 int main () {
-    QX_List *list = new QX_List();
+    List *list = new List();
 
 int option;
         cout << "--------------------------------------------------------------------------------------" << endl;
@@ -132,7 +130,7 @@ int option;
                 break;
 
             case 13: {
-                QX_List *list2 = new QX_List();
+                List *list2 = new List();
                 list2->push_back(3);
                 list2->push_back(4);
                 list2->push_back(4);
@@ -165,7 +163,7 @@ int option;
                 break;
 
             case 16: {
-                QX_List *list2 = new QX_List();
+                List *list2 = new List();
                 list2->push_back(3);
                 list2->push_back(4);
                 list2->push_back(4);
@@ -192,7 +190,7 @@ int option;
                 break;
 
             case 18: {
-                QX_List *list2 = new QX_List();
+                List *list2 = new List();
                 list2->push_back(3);
                 list2->push_back(4);
                 list2->push_back(4);
@@ -226,7 +224,7 @@ int option;
                 cout << "14. Cria uma cópia da lista atual." << endl;
                 cout << "15. Copia para dentro da lista atual os elementos de um vetor." << endl;
                 cout << "16. Determina se duas listas são iguais." << endl;
-                cout << "17. Separa a lista atual em duas listas a partir da primeira ocorrência de um valor. (Código defeituoso)" << endl;
+                //cout << "17. Separa a lista atual em duas listas a partir da primeira ocorrência de um valor. (Código defeituoso)" << endl;
                 cout << "18. Mistura na lista atual uma segunda lista." << endl;
                 cout << "--------------------------------------------------------------------------------------" << endl;
             }
