@@ -2,22 +2,22 @@
     Author: Fábio Luz Duarte Filho
 */
 
-#ifndef QX_LIST_H
-#define QX_LIST_H
+#ifndef LIST_H
+#define LIST_H
 
 struct Node;
 
-class QX_List {
+class List {
     private:
         //Cabeçalho da lista
         Node *head;
 
     public:
         //Construtor
-        QX_List();
+        List();
 
         //Destrutor
-        ~QX_List();
+        ~List();
 
         //Insere um inteiro key ao final da lista
         void push_back (int key);
@@ -61,25 +61,26 @@ class QX_List {
         void clear();
 
         //Concatena a lista atual com a lista "list2" passada por parâmetro.
-        void concat (QX_List *list2);
+        void concat (List *list2);
 
         //Retorna um ponteiro para uma cópia desta lista
-        QX_List *copy();
+        List *copy();
 
         //Copia os elementos do vetor array para a lista
         void copy_array (int *array, int array_size);
 
         //Determina se a lista passada por parâmetro é igual à lista em questão
-        bool equal (QX_List *list2);
+        bool equal (List *list2);
 
         /*Recebe como parâmetro um valor inteiro "value" e divide a lista
         em duas, de forma à segunda lista começar no primeiro nó
         logo após a primeira ocorrência de "value" na lista original*/
-        QX_List *separate (int value);
+        List *separate (int value);
 
         /*Recebe uma QX List como parâmetro e constrói uma nova lista
         com a intercalação dos nós da lista original com os nós
         da lista passada por parâmetro*/
-        void merge_lists (QX_List *list2);
+        void merge_lists (List *list2);
 };
+
 #endif
