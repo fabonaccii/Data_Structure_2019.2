@@ -1,6 +1,5 @@
 /*
-    Nome: Fábio Luz Duarte Filho
-    Matrícula: 474027
+    Author: Fábio Luz Duarte Filho
 */
 
 #include <iostream>
