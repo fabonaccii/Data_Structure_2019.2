@@ -1,3 +1,7 @@
+/*
+    Author: Fábio Luz Duarte Filho
+*/
+
 #include <iostream>
 using namespace std;
 
