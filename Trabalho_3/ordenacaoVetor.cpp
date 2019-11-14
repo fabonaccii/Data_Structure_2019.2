@@ -26,7 +26,7 @@ void recursiveBubbleSort (int* array, int size) {
 void iteractiveInsertionSort (int* array, int size) {
     for (int i = 1; i < size; i++) {
         int aux = array[i];
-        j = i-1;
+        int j = i-1;
         while (j >= 0 && array[j] > aux) {
             array[j+1] = array[j];
             j--;
@@ -36,15 +36,19 @@ void iteractiveInsertionSort (int* array, int size) {
 }
 
 void recursiveInsertionSort (int* array, int size) {
-    for (int i = 1; i < size; i++) {
-        int aux = array[i];
-        j = i-1;
-        while (j >= 0 && array[j] > aux) {
-            array[j+1] = array[j];
-            j--;
-        }
-        array[j+1] = aux;
+    if(size<=1)
+        return;
+    
+    int k = size-2; 
+    int aux = array[size-1];
+
+    recursiveInsertionSort(array, size-1);
+
+    while(array[k] > aux && k >= 0) {
+        array[k+1] = array[k];
+        k--;
     }
+    array[k+1] = aux;
 }
 
 void iteractiveSelectionSort (int *array, int size) {
