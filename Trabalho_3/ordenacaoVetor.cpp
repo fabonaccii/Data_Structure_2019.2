@@ -63,5 +63,15 @@ void iteractiveSelectionSort (int *array, int size) {
 }
 
 void recursiveSelectionSort (int* array, int size) {
-    
+    if (size <= 1)
+        return;
+
+    int major = 0;
+    for (int i = 1; i < size; i++) {
+        if (array[i] > array[major])
+            major = i;
+    }
+    swap (&array[size-1], &array[major]);
+
+    recursiveSelectionSort(array, size-1);
 }
