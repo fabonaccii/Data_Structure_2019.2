@@ -79,28 +79,26 @@ void recursiveSelectionSort (int* array, int size) {
 /*
 void merge (int *array, int begin, int middle, int end) {
     int iAux, jAux, kAux;
-    int *aux = new int[end-begin+1]; //Vetor auxiliar
+    int *aux_array = new int[end-begin+1]; //Vetor auxiliar
     iAux = begin; jAux = middle+1; kAux = 0;
 
     //Intercala array[begin..middle] e array[middle+1..end]
     while (iAux <= middle && jAux <= end) {
         if (array[iAux] <= array[jAux])
-            aux[kAux++] = array[iAux++];
+            aux_array[kAux++] = array[iAux++];
         else
-            aux[kAux++] = array[jAux++];
+            aux_array[kAux++] = array[jAux++];
     }
-    while (iAux <= middle) aux[kAux++] = array[iAux++];
-    while (jAux <= end) aux[kAux++] = array[jAux++];
+    while (iAux <= middle) aux_array[kAux++] = array[iAux++];
+    while (jAux <= end) aux_array[kAux++] = array[jAux++];
 
     //Copia vetor ordenado aux para o vetor array
     for (iAux = begin; iAux <= end; iAux++)
-        array[iAux] = aux[iAux-begin];
+        array[iAux] = aux_array[iAux-begin];
 
-    delete[] aux;
+    delete[] aux_array;
 }
-*/
 
-/*
 void recursiveMergeSort (int *array, int begin, int end) {
     if (begin < end) {
         int middle = (begin + end)/2;
