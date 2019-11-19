@@ -75,3 +75,64 @@ void recursiveSelectionSort (int* array, int size) {
 
     recursiveSelectionSort(array, size-1);
 }
+
+/*
+void merge (int *array, int begin, int middle, int end) {
+    int iAux, jAux, kAux;
+
+    int *aux = new int[end-begin+1]; //Vetor auxiliar
+
+    iAux = begin; jAux = middle+1; kAux = 0;
+
+    //Intercala array[begin..middle] e array[middle+1..end]
+    while (iAux <= middle && jAux <= end) {
+        if (array[iAux] <= array[jAux])
+            aux[kAux++] = array[iAux++];
+        else
+            aux[kAux++] = array[jAux++];
+    }
+    while (iAux <= middle) aux[kAux++] = array[iAux++];
+    while (jAux <= end) aux[kAux++] = array[jAux++];
+
+    //Copia vetor ordenado aux para o vetor array
+    for (iAux = begin; iAux <= end; iAux++)
+        array[iAux] = aux[iAux-begin];
+
+    delete[] aux;
+}
+*/
+
+/*
+void recursiveMergeSort (int *array, int begin, int end) {
+    if (begin < end) {
+        int middle = (begin + end)/2;
+
+        recursiveMergeSort(array, begin, middle);
+        recursiveMergeSort(array, middle + 1, end);
+
+        merge(array, begin, middle, end);
+    }
+}
+
+int partitionate (int *array, int begin, int end) {
+    int pivot = array[end];
+    int i = begin;
+    for (int k = begin; k < end; k++) {
+        if (array[k] <= pivot) {
+            swap(array[k], array[i]);
+            i++;
+        }
+    }
+    array[end] = array[i];
+    array[i] = pivot;
+    return i;
+}
+
+void recursiveQuickSort (int *array, int begin, int end) {
+    if (begin < end) {
+        int middle = partitionate(array, begin, end);
+        recursiveQuickSort(array, begin, middle-1);
+        recursiveQuickSort(array, middle+1, end);
+    }
+}
+*/
