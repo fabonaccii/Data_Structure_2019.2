@@ -79,9 +79,7 @@ void recursiveSelectionSort (int* array, int size) {
 /*
 void merge (int *array, int begin, int middle, int end) {
     int iAux, jAux, kAux;
-
     int *aux = new int[end-begin+1]; //Vetor auxiliar
-
     iAux = begin; jAux = middle+1; kAux = 0;
 
     //Intercala array[begin..middle] e array[middle+1..end]
@@ -106,10 +104,8 @@ void merge (int *array, int begin, int middle, int end) {
 void recursiveMergeSort (int *array, int begin, int end) {
     if (begin < end) {
         int middle = (begin + end)/2;
-
         recursiveMergeSort(array, begin, middle);
         recursiveMergeSort(array, middle + 1, end);
-
         merge(array, begin, middle, end);
     }
 }
