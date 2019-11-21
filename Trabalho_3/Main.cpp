@@ -6,9 +6,8 @@
 #include "ordenacaoLista.h"
 using namespace std;
 
-//Função que gera arquivos binarios, cada um contendo numeros aleatorios
 void random_data_file_generator(int size_array_size, int *array) {
-	for(int i = 0; i < array_size; i++) {
+	for(int i = 0; i < size_array_size; i++) {
 		for(int seed = 0; seed < 5; seed++) {
 			string data_file_name = "inputs/file"+"-"+to_string(array[i])+"-"+to_string(seed)+".dat";
 			ofstream out_file(data_file_name.c_str(), ios::binary);
@@ -16,26 +15,21 @@ void random_data_file_generator(int size_array_size, int *array) {
 
 			for(int j = 0; j < array[i]; j++) {
 				int random_number = rand()%1000000;
-				//out_file.write((char*)&r, sizeof(r));
-				out_file << random_number << " ";
+				out_file.write((char*)&random_number, sizeof(random_number));
+				//out_file << random_number << " ";
 			}
 			out_file.close();
 		}
 	}
 }
 
-/*
- * Recebe um vetor de inteiros A[0..n-1] como argumento e o preenche
- * com os n inteiros contidos no arquivo binario de mesmo nome que a 
- * string nomeArquivo
- */
-void ler_dados(int n, int A[], const char *nomeArquivo) {	
-	ifstream fin(nomeArquivo, ios::binary); // abre arquivo para leitura
+void data_file_read(int array_size, int *array, const char *data_file_name) {	
+	ifstream in_file(data_file_name, ios::binary);
 
-	for (int i = 0; i < n; i++)
-		fin.read((char*)&A[i], sizeof(int)); // ler os inteiros do arquivo e guarda no vetor
+	for (int i = 0; i < array_size; i++)
+		in_file.read((char*)&array[i], sizeof(int));
 
-	fin.close(); // fecha o arquivo de leitura
+	in_file.close();
 }
 
 int main() {
@@ -43,98 +37,188 @@ int main() {
 	
 	int size_array_size = 7;
 	
-	// Etapa 1: Gerar arquivos contendo números aleatórios
 	random_data_file_generator(size_array_size, sizes);
-	
-	// ------------------------------------------------------------
-	// Etapa 2 - Execução do CocktailSort
-	// Para cada arquivo gerado na etapa 1, ler o arquivo e popular
-	// um vetor de inteiros com os dados lidos.
-	ofstream ofs("resultados/resultadoCocktail.txt", ofstream::out ); // abre arquivo de resultados do cocktail
-	
-	for(int i = 0; i < array_size; i++) {
+
+
+	//Bubble Sort iterativo em vetor
+	ofstream output_file_1("outputs/iteractiveBubble.txt", ofstream::out );
+	for(int i = 0; i < size_array_size; i++) {
 		
 		long double iteractive_bubble_average_time = 0.0;
-		int tamanho_vetor = sizes[i]; // pega o tamanho do vetor para esta i
-		int vetor[tamanho_vetor]; // cria vetor a ser ordenado
-		
-		// Para cada tamanho de vetor, a funcao gera_dados() gerou 5 vetores diferentes. 
-		// Cada um usou uma seed diferente. Agora, vamos ler cada um desses vetores, 
-		// Chamar o cocktail sort para ordena-los e, entao, calcular o tempo medio de 
-		// execucao dessas cinco chamadas e depois salvar esse tempo medio em arquivo.
+		int array_size = sizes[i];
+		int array[array_size];
+	
 		for(int seed = 0; seed < 5; seed++) {	
-			string nome_arquivo = "dados/random"+to_string(i)+"_"+to_string(seed)+".dat";
+			string data_file_name = "inputs/file"+to_string(array[i])+"-"+to_string(seed)+".dat";
 		
-			ler_dados(tamanho_vetor, vetor, nome_arquivo.c_str());
+			data_file_read(array_size, array, data_file_name.c_str());
 			
-			// CocktailSort ------------------------------------------------------
-			// obtendo o tempo inicial
-			auto ini = chrono::high_resolution_clock::now();
+			auto inicial_clock = chrono::high_resolution_clock::now();
+
+			iteractiveBubbleSort(array, array_size);
 		
-			CocktailSort(tamanho_vetor, vetor); // ordena o vetor usando o CocktailSort
+			auto final_clock = chrono::high_resolution_clock::now();
 		
-			// obtendo o tempo final
-			auto fim = chrono::high_resolution_clock::now();
-		
-			// obtendo a duração total da ordenação
-			auto duracao_cocktail = chrono::duration_cast<chrono::microseconds>(fim - ini).count();
+			auto iteractive_bubble_duration = chrono::duration_cast <chrono::microseconds> (final_clock - inicial_clock).count();
 			
-			duracao_media_cocktail += duracao_cocktail;
-			
+			iteractive_bubble_average_time += iteractive_bubble_duration;
 		}
 		
-		duracao_media_cocktail = duracao_media_cocktail / 5.0;
-		cout << "[Cocktail] N = " << tamanho_vetor << ", tempo médio de execução = " << duracao_media_cocktail << " microssegundos" << endl;
-		ofs << tamanho_vetor << " " << duracao_media_cocktail << "\n"; // grava no arquivo de resultados do cocktail
+		iteractive_bubble_average_time /= 5.0;
+		cout << "[Iteractive Bubble] " << array_size << ", Runtime = " << iteractive_bubble_average_time << " microseconds" << endl;
+		output_file_1 << array_size << " " << iteractive_bubble_average_time << endl;
 	}
-	
-	ofs.close(); // fecha arquivo de resultados do CockTail Sort
-	// ------------------------------------------------------------
-	
-	
-	// ------------------------------------------------------------
-	// Etapa 3 - Execução do BubbleSort
-	// Para cada arquivo gerado na etapa 1, ler o arquivo e popular
-	// um vetor de inteiros com os dados lidos.
-	ofstream ofs2("resultados/resultadoBubble.txt", ofstream::out ); // abre arquivo de resultados do bubblesort
-	
-	for(int i = 0; i < array_size; i++) {
+	output_file_1.close();
+
+	//Bubble Sort recursivo em vetor
+	ofstream output_file_2("outputs/recursiveBubble.txt", ofstream::out );
+	for(int i = 0; i < size_array_size; i++) {
 		
-		long double duracao_media_bubble = 0.0;
-		int tamanho_vetor = sizes[i]; // pega o tamanho do vetor para esta i
-		int vetor[tamanho_vetor]; // cria vetor a ser ordenado
-		
-		// Para cada tamanho de vetor, a funcao gera_dados() gerou 5 vetores diferentes. 
-		// Cada um usou uma seed diferente. Agora, vamos ler cada um desses vetores, 
-		// Chamar o cocktail sort para ordena-los e, entao, calcular o tempo medio de 
-		// execucao dessas cinco chamadas e depois salvar esse tempo medio em arquivo.
+		long double recursive_bubble_average_time = 0.0;
+		int array_size = sizes[i];
+		int array[array_size];
+	
 		for(int seed = 0; seed < 5; seed++) {	
-			string nome_arquivo = "dados/random"+to_string(i)+"_"+to_string(seed)+".dat";
+			string data_file_name = "inputs/file"+to_string(array[i])+"-"+to_string(seed)+".dat";
 		
-			ler_dados(tamanho_vetor, vetor, nome_arquivo.c_str());
+			data_file_read(array_size, array, data_file_name.c_str());
 			
-			// BubbleSort ---------------------------------------------------------
-			// obtendo o tempo inicial
-			auto ini2 = chrono::high_resolution_clock::now();
+			auto inicial_clock = chrono::high_resolution_clock::now();
+
+			recursiveBubbleSort(array, array_size);
 		
-			BubbleSort(tamanho_vetor, vetor); // ordena o vetor usando o CocktailSort
+			auto final_clock = chrono::high_resolution_clock::now();
 		
-			// obtendo o tempo final
-			auto fim2 = chrono::high_resolution_clock::now();
-		
-			// obtendo a duração total da ordenação
-			auto duracao_bubble = chrono::duration_cast<chrono::microseconds>(fim2 - ini2).count();
+			auto recursive_bubble_duration = chrono::duration_cast <chrono::microseconds> (final_clock - inicial_clock).count();
 			
-			duracao_media_bubble += duracao_bubble;			
-		}	
+			recursive_bubble_average_time += recursive_bubble_duration;
+		}
 		
-		duracao_media_bubble = duracao_media_bubble / 5.0;
-		cout << "[Bubble] N = " << tamanho_vetor << ", tempo médio de execução = " << duracao_media_bubble << " microssegundos" << endl;
-		ofs2 << tamanho_vetor << " " << duracao_media_bubble << "\n"; // grava no arquivo de resultados do bubble
+		recursive_bubble_average_time /= 5.0;
+		cout << "[Recursive Bubble] " << array_size << ", Runtime = " << recursive_bubble_average_time << " microseconds" << endl;
+		output_file_2 << array_size << " " << recursive_bubble_average_time << endl;
 	}
+	output_file_2.close();
+
+	//Insertion Sort iterativo em vetor
+	ofstream output_file_3("outputs/iteractiveInsertion.txt", ofstream::out );
+	for(int i = 0; i < size_array_size; i++) {
+		
+		long double iteractive_insertion_average_time = 0.0;
+		int array_size = sizes[i];
+		int array[array_size];
 	
-	ofs2.close(); // fecha arquivo de resultados do Bubble Sort
-	// ------------------------------------------------------------
+		for(int seed = 0; seed < 5; seed++) {	
+			string data_file_name = "inputs/file"+to_string(array[i])+"-"+to_string(seed)+".dat";
+		
+			data_file_read(array_size, array, data_file_name.c_str());
+			
+			auto inicial_clock = chrono::high_resolution_clock::now();
+
+			iteractiveInsertionSort(array, array_size);
+		
+			auto final_clock = chrono::high_resolution_clock::now();
+		
+			auto iteractive_insertion_duration = chrono::duration_cast <chrono::microseconds> (final_clock - inicial_clock).count();
+			
+			iteractive_insertion_average_time += iteractive_insertion_duration;
+		}
+		
+		iteractive_insertion_average_time /= 5.0;
+		cout << "[Iteractive Insertion] " << array_size << ", Runtime = " << iteractive_insertion_average_time << " microseconds" << endl;
+		output_file_3 << array_size << " " << iteractive_insertion_average_time << endl;
+	}
+	output_file_3.close();
 	
-	return 0;
+	//Insertion Sort recursivo em vetor
+	ofstream output_file_4("outputs/recursiveInsertion.txt", ofstream::out );
+	for(int i = 0; i < size_array_size; i++) {
+		
+		long double recursive_insertion_average_time = 0.0;
+		int array_size = sizes[i];
+		int array[array_size];
+	
+		for(int seed = 0; seed < 5; seed++) {	
+			string data_file_name = "inputs/file"+to_string(array[i])+"-"+to_string(seed)+".dat";
+		
+			data_file_read(array_size, array, data_file_name.c_str());
+			
+			auto inicial_clock = chrono::high_resolution_clock::now();
+
+			recursiveInsertionSort(array, array_size);
+		
+			auto final_clock = chrono::high_resolution_clock::now();
+		
+			auto recursive_insertion_duration = chrono::duration_cast <chrono::microseconds> (final_clock - inicial_clock).count();
+			
+			recursive_insertion_average_time += recursive_insertion_duration;
+		}
+		
+		recursive_insertion_average_time /= 5.0;
+		cout << "[Recursive Insertion] " << array_size << ", Runtime = " << recursive_insertion_average_time << " microseconds" << endl;
+		output_file_4 << array_size << " " << recursive_insertion_average_time << endl;
+	}
+	output_file_4.close();
+
+	//Selection Sort iterativo em vetor
+	ofstream output_file_5("outputs/iteractiveSelection.txt", ofstream::out );
+	for(int i = 0; i < size_array_size; i++) {
+		
+		long double iteractive_selection_average_time = 0.0;
+		int array_size = sizes[i];
+		int array[array_size];
+	
+		for(int seed = 0; seed < 5; seed++) {	
+			string data_file_name = "inputs/file"+to_string(array[i])+"-"+to_string(seed)+".dat";
+		
+			data_file_read(array_size, array, data_file_name.c_str());
+			
+			auto inicial_clock = chrono::high_resolution_clock::now();
+
+			iteractiveSelectionSort(array, array_size);
+		
+			auto final_clock = chrono::high_resolution_clock::now();
+		
+			auto iteractive_selection_duration = chrono::duration_cast <chrono::microseconds> (final_clock - inicial_clock).count();
+			
+			iteractive_selection_average_time += iteractive_selection_duration;
+		}
+		
+		iteractive_selection_average_time /= 5.0;
+		cout << "[Iteractive Selection] " << array_size << ", Runtime = " << iteractive_selection_average_time << " microseconds" << endl;
+		output_file_5 << array_size << " " << iteractive_selection_average_time << endl;
+	}
+	output_file_5.close();
+
+	//Selection Sort recursivo em vetor
+	ofstream output_file_6("outputs/recursiveSelection.txt", ofstream::out );
+	for(int i = 0; i < size_array_size; i++) {
+		
+		long double recursive_selection_average_time = 0.0;
+		int array_size = sizes[i];
+		int array[array_size];
+	
+		for(int seed = 0; seed < 5; seed++) {	
+			string data_file_name = "inputs/file"+to_string(array[i])+"-"+to_string(seed)+".dat";
+		
+			data_file_read(array_size, array, data_file_name.c_str());
+			
+			auto inicial_clock = chrono::high_resolution_clock::now();
+
+			recursiveSelectionSort(array, array_size);
+		
+			auto final_clock = chrono::high_resolution_clock::now();
+		
+			auto recursive_selection_duration = chrono::duration_cast <chrono::microseconds> (final_clock - inicial_clock).count();
+			
+			recursive_selection_average_time += recursive_selection_duration;
+		}
+		
+		recursive_selection_average_time /= 5.0;
+		cout << "[Recursive Selection] " << array_size << ", Runtime = " << recursive_selection_average_time << " microseconds" << endl;
+		output_file_6 << array_size << " " << recursive_selection_average_time << endl;
+	}
+	output_file_6.close();
+
+	
 }
