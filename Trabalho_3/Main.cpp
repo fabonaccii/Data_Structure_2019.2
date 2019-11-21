@@ -16,7 +16,6 @@ void random_data_file_generator(int size_array_size, int *array) {
 			for(int j = 0; j < array[i]; j++) {
 				int random_number = rand()%1000000;
 				out_file.write((char*)&random_number, sizeof(random_number));
-				//out_file << random_number << " ";
 			}
 			out_file.close();
 		}
@@ -34,11 +33,9 @@ void data_file_read(int array_size, int *array, const char *data_file_name) {
 
 int main() {
 	int sizes[] = {1000, 5000, 10000, 50000, 100000, 500000, 1000000};
-	
 	int size_array_size = 7;
 	
 	random_data_file_generator(size_array_size, sizes);
-
 
 	//Bubble Sort iterativo em vetor
 	ofstream output_file_1("outputs/iteractiveBubble.txt", ofstream::out );
@@ -220,5 +217,5 @@ int main() {
 	}
 	output_file_6.close();
 
-	
+
 }
