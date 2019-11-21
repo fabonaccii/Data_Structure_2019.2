@@ -1,29 +1,33 @@
 #include <iostream>
 #include "ordenacaoVetor.h"
 
+
 void swap (int* x, int* y) {
     int z = *x;
     *x = *y;
     *y = z;
 }
 
-void iteractiveBubbleSort (int* array, int size) {
+void iteractiveBubbleSort (int *array, int size) {
     for (int i = 0; i < size-1; i++)
         for (int j = size-1; j > i; j--)
             if (array[j] < array[j-1])
                 swap(&array[j], &array[j-1]);
 }
 
-void recursiveBubbleSort (int* array, int size) {
-    if (size < 1) return;
+void recursiveBubbleSort (int *array, int size) {
+    if (size < 1)
+        return;
+
     for (int i = 0; i < size-1; i++) {
         if (array[i] > array[i+1])
             swap(&array[i], &array[i+1]);
     }
+
     recursiveBubbleSort(array, size-1);
 }
 
-void iteractiveInsertionSort (int* array, int size) {
+void iteractiveInsertionSort (int *array, int size) {
     for (int i = 1; i < size; i++) {
         int aux = array[i];
         int j = i-1;
@@ -36,6 +40,9 @@ void iteractiveInsertionSort (int* array, int size) {
 }
 
 void recursiveInsertionSort (int* array, int size) {
+    //Caso base onde será feita a verificação no vetor se o seu tamanho é menor ou igual a 1
+    //Se for igual a 1, significa que o vetor possui um elemento, logo não é necessário a sua ordenação
+    //se for igual a 0, o vetor está vazio, logo não há nada a fazer.
     if(size <= 1)
         return;
     
@@ -76,7 +83,7 @@ void recursiveSelectionSort (int* array, int size) {
     recursiveSelectionSort(array, size-1);
 }
 
-/*
+
 void merge (int *array, int begin, int middle, int end) {
     int iAux, jAux, kAux;
     int *aux_array = new int[end-begin+1]; //Vetor auxiliar
@@ -113,7 +120,7 @@ int partitionate (int *array, int begin, int end) {
     int i = begin;
     for (int k = begin; k < end; k++) {
         if (array[k] <= pivot) {
-            swap(array[k], array[i]);
+            swap(&array[k], &array[i]);
             i++;
         }
     }
@@ -129,4 +136,3 @@ void recursiveQuickSort (int *array, int begin, int end) {
         recursiveQuickSort(array, middle+1, end);
     }
 }
-*/
