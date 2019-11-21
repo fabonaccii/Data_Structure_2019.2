@@ -9,7 +9,7 @@ using namespace std;
 void random_data_file_generator(int size_array_size, int *array) {
 	for(int i = 0; i < size_array_size; i++) {
 		for(int seed = 0; seed < 5; seed++) {
-			string data_file_name = "inputs/file"+"-"+to_string(array[i])+"-"+to_string(seed)+".dat";
+			string data_file_name = "inputs/file-"+to_string(array[i])+"-"+to_string(seed)+".dat";
 			ofstream out_file(data_file_name.c_str(), ios::binary);
 			srand(time(NULL));
 
@@ -38,7 +38,7 @@ int main() {
 	random_data_file_generator(size_array_size, sizes);
 
 	//Bubble Sort iterativo em vetor
-	ofstream output_file_1("outputs/iteractiveBubble.txt", ofstream::out );
+	ofstream output_file_1("outputs/array/iteractiveBubble.txt", ofstream::out );
 	for(int i = 0; i < size_array_size; i++) {
 		
 		long double iteractive_bubble_average_time = 0.0;
@@ -46,7 +46,7 @@ int main() {
 		int array[array_size];
 	
 		for(int seed = 0; seed < 5; seed++) {	
-			string data_file_name = "inputs/file"+to_string(array[i])+"-"+to_string(seed)+".dat";
+			string data_file_name = "inputs/file-"+to_string(array[i])+"-"+to_string(seed)+".dat";
 		
 			data_file_read(array_size, array, data_file_name.c_str());
 			
@@ -62,13 +62,13 @@ int main() {
 		}
 		
 		iteractive_bubble_average_time /= 5.0;
-		cout << "[Iteractive Bubble] " << array_size << ", Runtime = " << iteractive_bubble_average_time << " microseconds" << endl;
+		cout << "[Iteractive Bubble] " << array_size << ", Average Runtime = " << iteractive_bubble_average_time << " microseconds" << endl;
 		output_file_1 << array_size << " " << iteractive_bubble_average_time << endl;
 	}
 	output_file_1.close();
 
 	//Bubble Sort recursivo em vetor
-	ofstream output_file_2("outputs/recursiveBubble.txt", ofstream::out );
+	ofstream output_file_2("outputs/array/recursiveBubble.txt", ofstream::out );
 	for(int i = 0; i < size_array_size; i++) {
 		
 		long double recursive_bubble_average_time = 0.0;
@@ -76,7 +76,7 @@ int main() {
 		int array[array_size];
 	
 		for(int seed = 0; seed < 5; seed++) {	
-			string data_file_name = "inputs/file"+to_string(array[i])+"-"+to_string(seed)+".dat";
+			string data_file_name = "inputs/file-"+to_string(array[i])+"-"+to_string(seed)+".dat";
 		
 			data_file_read(array_size, array, data_file_name.c_str());
 			
@@ -92,13 +92,13 @@ int main() {
 		}
 		
 		recursive_bubble_average_time /= 5.0;
-		cout << "[Recursive Bubble] " << array_size << ", Runtime = " << recursive_bubble_average_time << " microseconds" << endl;
+		cout << "[Recursive Bubble] " << array_size << ", Average Runtime = " << recursive_bubble_average_time << " microseconds" << endl;
 		output_file_2 << array_size << " " << recursive_bubble_average_time << endl;
 	}
 	output_file_2.close();
 
 	//Insertion Sort iterativo em vetor
-	ofstream output_file_3("outputs/iteractiveInsertion.txt", ofstream::out );
+	ofstream output_file_3("outputs/array/iteractiveInsertion.txt", ofstream::out );
 	for(int i = 0; i < size_array_size; i++) {
 		
 		long double iteractive_insertion_average_time = 0.0;
@@ -106,7 +106,7 @@ int main() {
 		int array[array_size];
 	
 		for(int seed = 0; seed < 5; seed++) {	
-			string data_file_name = "inputs/file"+to_string(array[i])+"-"+to_string(seed)+".dat";
+			string data_file_name = "inputs/file-"+to_string(array[i])+"-"+to_string(seed)+".dat";
 		
 			data_file_read(array_size, array, data_file_name.c_str());
 			
@@ -122,13 +122,13 @@ int main() {
 		}
 		
 		iteractive_insertion_average_time /= 5.0;
-		cout << "[Iteractive Insertion] " << array_size << ", Runtime = " << iteractive_insertion_average_time << " microseconds" << endl;
+		cout << "[Iteractive Insertion] " << array_size << ", Average Runtime = " << iteractive_insertion_average_time << " microseconds" << endl;
 		output_file_3 << array_size << " " << iteractive_insertion_average_time << endl;
 	}
 	output_file_3.close();
 	
 	//Insertion Sort recursivo em vetor
-	ofstream output_file_4("outputs/recursiveInsertion.txt", ofstream::out );
+	ofstream output_file_4("outputs/array/recursiveInsertion.txt", ofstream::out );
 	for(int i = 0; i < size_array_size; i++) {
 		
 		long double recursive_insertion_average_time = 0.0;
@@ -136,7 +136,7 @@ int main() {
 		int array[array_size];
 	
 		for(int seed = 0; seed < 5; seed++) {	
-			string data_file_name = "inputs/file"+to_string(array[i])+"-"+to_string(seed)+".dat";
+			string data_file_name = "inputs/file-"+to_string(array[i])+"-"+to_string(seed)+".dat";
 		
 			data_file_read(array_size, array, data_file_name.c_str());
 			
@@ -152,13 +152,13 @@ int main() {
 		}
 		
 		recursive_insertion_average_time /= 5.0;
-		cout << "[Recursive Insertion] " << array_size << ", Runtime = " << recursive_insertion_average_time << " microseconds" << endl;
+		cout << "[Recursive Insertion] " << array_size << ", Average Runtime = " << recursive_insertion_average_time << " microseconds" << endl;
 		output_file_4 << array_size << " " << recursive_insertion_average_time << endl;
 	}
 	output_file_4.close();
 
 	//Selection Sort iterativo em vetor
-	ofstream output_file_5("outputs/iteractiveSelection.txt", ofstream::out );
+	ofstream output_file_5("outputs/array/iteractiveSelection.txt", ofstream::out );
 	for(int i = 0; i < size_array_size; i++) {
 		
 		long double iteractive_selection_average_time = 0.0;
@@ -166,7 +166,7 @@ int main() {
 		int array[array_size];
 	
 		for(int seed = 0; seed < 5; seed++) {	
-			string data_file_name = "inputs/file"+to_string(array[i])+"-"+to_string(seed)+".dat";
+			string data_file_name = "inputs/file-"+to_string(array[i])+"-"+to_string(seed)+".dat";
 		
 			data_file_read(array_size, array, data_file_name.c_str());
 			
@@ -182,13 +182,13 @@ int main() {
 		}
 		
 		iteractive_selection_average_time /= 5.0;
-		cout << "[Iteractive Selection] " << array_size << ", Runtime = " << iteractive_selection_average_time << " microseconds" << endl;
+		cout << "[Iteractive Selection] " << array_size << ", Average Runtime = " << iteractive_selection_average_time << " microseconds" << endl;
 		output_file_5 << array_size << " " << iteractive_selection_average_time << endl;
 	}
 	output_file_5.close();
 
 	//Selection Sort recursivo em vetor
-	ofstream output_file_6("outputs/recursiveSelection.txt", ofstream::out );
+	ofstream output_file_6("outputs/array/recursiveSelection.txt", ofstream::out );
 	for(int i = 0; i < size_array_size; i++) {
 		
 		long double recursive_selection_average_time = 0.0;
@@ -196,7 +196,7 @@ int main() {
 		int array[array_size];
 	
 		for(int seed = 0; seed < 5; seed++) {	
-			string data_file_name = "inputs/file"+to_string(array[i])+"-"+to_string(seed)+".dat";
+			string data_file_name = "inputs/file-"+to_string(array[i])+"-"+to_string(seed)+".dat";
 		
 			data_file_read(array_size, array, data_file_name.c_str());
 			
@@ -212,10 +212,68 @@ int main() {
 		}
 		
 		recursive_selection_average_time /= 5.0;
-		cout << "[Recursive Selection] " << array_size << ", Runtime = " << recursive_selection_average_time << " microseconds" << endl;
+		cout << "[Recursive Selection] " << array_size << ", Average Runtime = " << recursive_selection_average_time << " microseconds" << endl;
 		output_file_6 << array_size << " " << recursive_selection_average_time << endl;
 	}
 	output_file_6.close();
 
+	//Merge Sort recursivo em vetor
+	ofstream output_file_8("outputs/array/recursiveMerge.txt", ofstream::out );
+	for(int i = 0; i < size_array_size; i++) {
+		
+		long double recursive_merge_average_time = 0.0;
+		int array_size = sizes[i];
+		int array[array_size];
+	
+		for(int seed = 0; seed < 5; seed++) {	
+			string data_file_name = "inputs/file-"+to_string(array[i])+"-"+to_string(seed)+".dat";
+		
+			data_file_read(array_size, array, data_file_name.c_str());
+			
+			auto inicial_clock = chrono::high_resolution_clock::now();
 
+			recursiveMergeSort(array, 0, array_size-1);
+		
+			auto final_clock = chrono::high_resolution_clock::now();
+		
+			auto recursive_merge_duration = chrono::duration_cast <chrono::microseconds> (final_clock - inicial_clock).count();
+			
+			recursive_merge_average_time += recursive_merge_duration;
+		}
+		
+		recursive_merge_average_time /= 5.0;
+		cout << "[Recursive Merge] " << array_size << ", Average Runtime = " << recursive_merge_average_time << " microseconds" << endl;
+		output_file_8 << array_size << " " << recursive_merge_average_time << endl;
+	}
+	output_file_8.close();
+
+	//Quick Sort recursivo em vetor
+	ofstream output_file_10("outputs/array/recursiveQuick.txt", ofstream::out );
+	for(int i = 0; i < size_array_size; i++) {
+		
+		long double recursive_quick_average_time = 0.0;
+		int array_size = sizes[i];
+		int array[array_size];
+	
+		for(int seed = 0; seed < 5; seed++) {	
+			string data_file_name = "inputs/file-"+to_string(array[i])+"-"+to_string(seed)+".dat";
+		
+			data_file_read(array_size, array, data_file_name.c_str());
+			
+			auto inicial_clock = chrono::high_resolution_clock::now();
+
+			recursiveQuickSort(array, 0, array_size-1);
+		
+			auto final_clock = chrono::high_resolution_clock::now();
+		
+			auto recursive_quick_duration = chrono::duration_cast <chrono::microseconds> (final_clock - inicial_clock).count();
+			
+			recursive_quick_average_time += recursive_quick_duration;
+		}
+		
+		recursive_quick_average_time /= 5.0;
+		cout << "[Recursive Quick] " << array_size << ", Average Runtime = " << recursive_quick_average_time << " microseconds" << endl;
+		output_file_10 << array_size << " " << recursive_quick_average_time << endl;
+	}
+	output_file_10.close();
 }
