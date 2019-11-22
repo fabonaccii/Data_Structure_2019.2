@@ -22,11 +22,14 @@ void iteractiveSelectionSort (int* array, int size);
 //Selection Sort recursivo
 void recursiveSelectionSort (int* array, int size);
 
+//Função auxiliar do Merge Sort
+void merge (int *array, int begin, int middle, int end);
+
 //Merge Sort iterativo
 void iteractiveMergeSort ();
 
 //Merge Sort recursivo
-void recursiveMergeSort ();
+void recursiveMergeSort (int *array, int begin, int end);
 
 //Heap Sort iterativo
 void iteractiveHeapSort ();
@@ -34,10 +37,13 @@ void iteractiveHeapSort ();
 //Heap Sort recursivo
 void recursiveHeapSort ();
 
+//Funcão auxiliar do Quick Sort
+int partitionate (int *array, int begin, int end);
+
 //Quick Sort iterativo
 void iteractiveQuickSort ();
 
 //Quick Sort recursivo
-void recursiveQuickSort ();
+void recursiveQuickSort (int *array, int begin, int end);
 
 #endif
