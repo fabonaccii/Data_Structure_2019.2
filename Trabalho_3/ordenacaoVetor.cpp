@@ -9,21 +9,32 @@ void swap (int* x, int* y) {
 }
 
 void iteractiveBubbleSort (int *array, int size) {
-    for (int i = 0; i < size-1; i++)
+    bool swapped;
+    for (int i = 0; i < size-1; i++) {
+        swapped = false;
         for (int j = size-1; j > i; j--)
-            if (array[j] < array[j-1])
+            if (array[j] < array[j-1]) {
                 swap(&array[j], &array[j-1]);
+                swapped = true;
+            }
+        if (swapped == false)
+            break;
+    }
 }
 
 void recursiveBubbleSort (int *array, int size) {
     if (size < 1)
         return;
 
-    for (int i = 0; i < size-1; i++) {
-        if (array[i] > array[i+1])
+    bool swapped = false;
+    for (int i = 0; i < size-1; i++)
+        if (array[i] > array[i+1]) {
             swap(&array[i], &array[i+1]);
-    }
-
+            swapped = true;
+        }
+    
+    if (swapped == false)
+        return;
     recursiveBubbleSort(array, size-1);
 }
 
@@ -117,16 +128,15 @@ void recursiveMergeSort (int *array, int begin, int end) {
 
 int partitionate (int *array, int begin, int end) {
     int pivot = array[end];
-    int i = begin;
-    for (int k = begin; k < end; k++) {
-        if (array[k] <= pivot) {
-            swap(&array[k], &array[i]);
+    int i = begin-1;
+    for (int j = begin; j <= end-1; j++) {
+        if (array[j] < pivot) {
             i++;
+            swap(&array[i], &array[j]);
         }
     }
-    array[end] = array[i];
-    array[i] = pivot;
-    return i;
+    swap(&array[i+1], &array[end]);
+    return i+1;
 }
 
 void recursiveQuickSort (int *array, int begin, int end) {
