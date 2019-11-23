@@ -1,12 +1,8 @@
 #ifndef ORDENACAO_VETOR_H
 #define ORDENACAO_VETOR_H
 
-//struct NoArv;
-
 //Função de troca auxiliar
 void swap (int* x, int* y);
-
-void max_heap(int* array, int size, int index);
 
 //Bubble Sort iterativo
 void iteractiveBubbleSort (int* array, int size);
@@ -26,6 +22,8 @@ void iteractiveSelectionSort (int* array, int size);
 //Selection Sort recursivo
 void recursiveSelectionSort (int* array, int size);
 
+//Função auxiliar do Merge Sort
+void merge (int *array, int begin, int middle, int end);
 
 //Merge Sort iterativo
 void iteractiveMergeSort ();
@@ -33,11 +31,17 @@ void iteractiveMergeSort ();
 //Merge Sort recursivo
 void recursiveMergeSort (int *array, int begin, int end);
 
+//Função auxiliar do Heap Sort
+void maxHeap (int * array, int size, int index);
+
 //Heap Sort iterativo
-void iteractiveHeapSort(int* array, int size);
+void iteractiveHeapSort (int *array, int size);
 
 //Heap Sort recursivo
-//recursiveHeapSort();
+void recursiveHeapSort ();
+
+//Funcão auxiliar do Quick Sort
+int partitionate (int *array, int begin, int end);
 
 //Quick Sort iterativo
 void iteractiveQuickSort ();
