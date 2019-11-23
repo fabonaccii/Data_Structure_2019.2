@@ -1,5 +1,8 @@
 #include <iostream>
 #include "ordenacaoLista.h"
+#include <climits>
+#include "List.h"
+using namespace std;
 
 struct Node {
     int key;
@@ -7,7 +10,7 @@ struct Node {
     Node *prev;
 };
 
-List::List() {
+List::List(){
     head = new Node;
     head->key = 0;
     head->next = head;
@@ -19,6 +22,7 @@ List::~List() {
     delete head;
     cout << "Lista destruída" << endl;
 }
+
 
 void List::push_back (int key) {
         Node *added = new Node;
@@ -38,7 +42,6 @@ int List::pop_back() {
         delete aux;
         return returnable_value;
     }
-    cerr << "Lista vazia" << endl;
     return INT_MIN;
 }
 
@@ -54,15 +57,8 @@ void List::insert_after (int key, int index) {
         (aux->next)->prev = added;
         aux->next = added;
     }
-    else cerr << "Índice inválido" << endl;
 }
 
-Node* List::search (int key) {
-    Node *aux = head->next;
-    while(aux != head && aux->key != key)
-        aux = aux->next; 
-    return (aux == head) ? NULL : aux;
-}
 
 void List::print() {
     Node *aux = head->next;
@@ -73,10 +69,6 @@ void List::print() {
     cout << endl;
 }
 
-bool List::is_empty() {
-    return (head->next == head);
-}
-
 int List::size() {
     int count = 0;
     Node *aux = head->next;
@@ -85,6 +77,10 @@ int List::size() {
         aux = aux->next;
     }
     return count;
+}
+
+bool List::is_empty() {
+    return (head->next == head);
 }
 
 void List::clear() {
@@ -105,43 +101,48 @@ void List::clear() {
         cerr << "A lista já está vazia" << endl;
 }
 
-List* List::copy() {
-    List *list_copy = new List();
-    Node *aux = head->next;
-    while (aux != head) {
-        list_copy->push_back(aux->key);
+
+
+
+
+void listBubbleSort(Node* list) {
+    //Verifica se a lista possui apenas um elemento
+    if(list->next== list && list->prev ==list){
+        return;
+    }
+    /*
+    É criado dois node onde o last vai guardar o último elemento e o aux vai guardar o primeiro elemento da lista
+    */
+    Node* last = list->prev;
+    Node* aux = list->next;
+    while(aux!= list){
+        Node* aux2= last;
+        while(aux2!= aux){
+            if((aux2->prev)->key > aux2->key){
+                swap((aux2->prev)->key,aux2->key);
+            }
+            aux2 = aux2->prev;
+        }
         aux = aux->next;
     }
-    return list_copy;
 }
 
-void List::copy_array (int *array, int array_size) {
-    for (int i = 0; i < array_size; i++)
-        push_back(array[i]);
-    cout << "Array copiado para a lista" << endl;
-}
-
-
-void List::bubbleSort (List *list) {
+void listInsertionSort () {
 
 }
 
-void List::insertionSort (List *list) {
+void listSelectionSort () {
 
 }
 
-void List::selectionSort (List *list) {
+void listMergeSort () {
 
 }
 
-void List::mergeSort (List *list) {
+void listHeapSort () {
 
 }
 
-void List::heapSort (List *list) {
-
-}
-
-void List::quickSort (List *list) {
+void listQuickSort () {
 
 }
