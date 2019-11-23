@@ -8,6 +8,8 @@ void swap (int* x, int* y) {
     *y = z;
 }
 
+
+
 void iteractiveBubbleSort (int *array, int size) {
     bool swapped;
     for (int i = 0; i < size-1; i++) {
@@ -72,9 +74,9 @@ void recursiveInsertionSort (int* array, int size) {
 void iteractiveSelectionSort (int *array, int size) {
     for (int i = 0; i < size; i++) {
         int minor = i;
-        for (int j = i+1; j < size; j++)    
+        for (int j = i+1; j < size; j++) {     
             if (array[j] < array[minor]) minor = j;
-        
+        }
         if (array[i] != array[minor])
             swap(&array[i], &array[minor]);
     }
@@ -94,11 +96,13 @@ void recursiveSelectionSort (int* array, int size) {
     recursiveSelectionSort(array, size-1);
 }
 
+
 void merge (int *array, int begin, int middle, int end) {
     int iAux, jAux, kAux;
-    int *aux_array = new int[end-begin+1];
+    int *aux_array = new int[end-begin+1]; //Vetor auxiliar
     iAux = begin; jAux = middle+1; kAux = 0;
 
+    //Intercala array[begin..middle] e array[middle+1..end]
     while (iAux <= middle && jAux <= end) {
         if (array[iAux] <= array[jAux])
             aux_array[kAux++] = array[iAux++];
@@ -108,6 +112,7 @@ void merge (int *array, int begin, int middle, int end) {
     while (iAux <= middle) aux_array[kAux++] = array[iAux++];
     while (jAux <= end) aux_array[kAux++] = array[jAux++];
 
+    //Copia vetor ordenado aux para o vetor array
     for (iAux = begin; iAux <= end; iAux++)
         array[iAux] = aux_array[iAux-begin];
 
@@ -142,4 +147,38 @@ void recursiveQuickSort (int *array, int begin, int end) {
         recursiveQuickSort(array, begin, middle-1);
         recursiveQuickSort(array, middle+1, end);
     }
+}
+
+
+
+void max_heap(int* array, int size, int index){
+    int largest = index;
+    int left = 2 * index + 1;
+    int right = 2 * index + 2;
+
+    if (left < size && array[left] > array[largest])
+        largest = left;
+
+    if (right < size && array[right] > array[largest])
+        largest = right;
+
+    if (largest != index)
+    {
+        swap(&array[index],&array[largest]);
+        max_heap(array, size, largest);
+    }
+}
+
+
+
+
+void iteractiveHeapSort(int* array, int size){
+     for (int i = size / 2 - 1; i >= 0; i--)
+        max_heap(array, size, i);
+
+    for (int i = size - 1; i >= 0; i--)
+    {
+        swap(&array[0], &array[i]);
+        max_heap(array, i, 0);
+    }    
 }
