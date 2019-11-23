@@ -56,6 +56,8 @@ int main() {
 	int size_array_size = 7;
 	
 	random_data_file_generator(size_array_size, sizes);
+	
+	cout << "Vetor:" << endl;
 
 	//Bubble Sort iterativo em vetor
 	ofstream output_file_1("outputs/array/iteractiveBubble.txt", ofstream::out );
@@ -327,7 +329,8 @@ int main() {
 		output_file_12 << array_size << " " << recursive_quick_average_time << endl;
 	}
 	output_file_12.close();
-
+	
+	cout << "Lista:" << endl;
 /*
 	//BubbleSort Iterativo em lista
 	ofstream output_file_13("outputs/list/iteractiveBubble.txt", ofstream::out );
@@ -345,7 +348,7 @@ int main() {
 			
 			auto inicial_clock = chrono::high_resolution_clock::now();
 
-			iteractiveBubbleSort(array, array_size);
+			list->bubbleSort(array, array_size);
 		
 			auto final_clock = chrono::high_resolution_clock::now();
 		
