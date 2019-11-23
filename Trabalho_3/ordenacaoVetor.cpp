@@ -8,8 +8,6 @@ void swap (int* x, int* y) {
     *y = z;
 }
 
-
-
 void iteractiveBubbleSort (int *array, int size) {
     bool swapped;
     for (int i = 0; i < size-1; i++) {
