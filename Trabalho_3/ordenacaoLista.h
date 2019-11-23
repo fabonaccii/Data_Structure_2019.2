@@ -50,19 +50,19 @@ class List {
         void bubbleSort (Node *list);
 
         //Insertion Sort
-        //void insertionSort (List *list);
+        void insertionSort (List *list);
 
         //Selection Sort
-        //void selectionSort (List *list);
+        void selectionSort (List *list);
 
         //Merge Sort
-        //void mergeSort (List *list);
+        void mergeSort (List *list);
 
         //Heap Sort
-        //void heapSort (List *list);
+        void heapSort (List *list);
 
         //Quick Sort
-        //void quickSort (List *list);
+        void quickSort (List *list);
 };
 
 #endif
