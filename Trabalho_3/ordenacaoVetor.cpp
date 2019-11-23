@@ -159,12 +159,12 @@ void maxHeap(int* array, int size, int index){
 
     if (largest != index) {
         swap(&array[index],&array[largest]);
-        max_heap(array, size, largest);
+        maxHeap(array, size, largest);
     }
 }
 
 void iteractiveHeapSort(int* array, int size){
-     for (int i = size / 2 - 1; i >= 0; i--)
+    for (int i = size / 2 - 1; i >= 0; i--)
         maxHeap(array, size, i);
 
     for (int i = size - 1; i >= 0; i--) {
