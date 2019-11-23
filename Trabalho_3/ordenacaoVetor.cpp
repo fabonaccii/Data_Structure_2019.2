@@ -149,9 +149,7 @@ void recursiveQuickSort (int *array, int begin, int end) {
     }
 }
 
-
-
-void max_heap(int* array, int size, int index){
+void maxHeap(int* array, int size, int index){
     int largest = index;
     int left = 2 * index + 1;
     int right = 2 * index + 2;
@@ -162,23 +160,18 @@ void max_heap(int* array, int size, int index){
     if (right < size && array[right] > array[largest])
         largest = right;
 
-    if (largest != index)
-    {
+    if (largest != index) {
         swap(&array[index],&array[largest]);
         max_heap(array, size, largest);
     }
 }
 
-
-
-
 void iteractiveHeapSort(int* array, int size){
      for (int i = size / 2 - 1; i >= 0; i--)
-        max_heap(array, size, i);
+        maxHeap(array, size, i);
 
-    for (int i = size - 1; i >= 0; i--)
-    {
+    for (int i = size - 1; i >= 0; i--) {
         swap(&array[0], &array[i]);
-        max_heap(array, i, 0);
+        maxHeap(array, i, 0);
     }    
 }
