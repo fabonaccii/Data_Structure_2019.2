@@ -82,7 +82,7 @@ int main() {
 		}
 		
 		iteractive_bubble_average_time /= 5.0;
-		cout << "[Iteractive Bubble] " << array_size << ", Average Runtime = " << iteractive_bubble_average_time << " microseconds" << endl;
+		cout << "[Iteractive Bubble] " << array_size << ", [Average Runtime] = " << iteractive_bubble_average_time << " microseconds" << endl;
 		output_file_1 << array_size << " " << iteractive_bubble_average_time << endl;
 	}
 	output_file_1.close();
@@ -112,7 +112,7 @@ int main() {
 		}
 		
 		recursive_bubble_average_time /= 5.0;
-		cout << "[Recursive Bubble] " << array_size << ", Average Runtime = " << recursive_bubble_average_time << " microseconds" << endl;
+		cout << "[Recursive Bubble] " << array_size << ", [Average Runtime] = " << recursive_bubble_average_time << " microseconds" << endl;
 		output_file_2 << array_size << " " << recursive_bubble_average_time << endl;
 	}
 	output_file_2.close();
@@ -142,7 +142,7 @@ int main() {
 		}
 		
 		iteractive_insertion_average_time /= 5.0;
-		cout << "[Iteractive Insertion] " << array_size << ", Average Runtime = " << iteractive_insertion_average_time << " microseconds" << endl;
+		cout << "[Iteractive Insertion] " << array_size << ", [Average Runtime] = " << iteractive_insertion_average_time << " microseconds" << endl;
 		output_file_3 << array_size << " " << iteractive_insertion_average_time << endl;
 	}
 	output_file_3.close();
@@ -172,7 +172,7 @@ int main() {
 		}
 		
 		recursive_insertion_average_time /= 5.0;
-		cout << "[Recursive Insertion] " << array_size << ", Average Runtime = " << recursive_insertion_average_time << " microseconds" << endl;
+		cout << "[Recursive Insertion] " << array_size << ", [Average Runtime] = " << recursive_insertion_average_time << " microseconds" << endl;
 		output_file_4 << array_size << " " << recursive_insertion_average_time << endl;
 	}
 	output_file_4.close();
@@ -202,7 +202,7 @@ int main() {
 		}
 		
 		iteractive_selection_average_time /= 5.0;
-		cout << "[Iteractive Selection] " << array_size << ", Average Runtime = " << iteractive_selection_average_time << " microseconds" << endl;
+		cout << "[Iteractive Selection] " << array_size << ", [Average Runtime] = " << iteractive_selection_average_time << " microseconds" << endl;
 		output_file_5 << array_size << " " << iteractive_selection_average_time << endl;
 	}
 	output_file_5.close();
@@ -232,7 +232,7 @@ int main() {
 		}
 		
 		recursive_selection_average_time /= 5.0;
-		cout << "[Recursive Selection] " << array_size << ", Average Runtime = " << recursive_selection_average_time << " microseconds" << endl;
+		cout << "[Recursive Selection] " << array_size << ", [Average Runtime] = " << recursive_selection_average_time << " microseconds" << endl;
 		output_file_6 << array_size << " " << recursive_selection_average_time << endl;
 	}
 	output_file_6.close();
@@ -256,22 +256,22 @@ int main() {
 		
 			auto final_clock = chrono::high_resolution_clock::now();
 		
-			auto recursive_merge_duration = chrono::duration_cast <chrono::milliseconds> (final_clock - inicial_clock).count();
+			auto recursive_merge_duration = chrono::duration_cast <chrono::microseconds> (final_clock - inicial_clock).count();
 			
 			recursive_merge_average_time += recursive_merge_duration;
 		}
 		
 		recursive_merge_average_time /= 5.0;
-		cout << "[Recursive Merge] " << array_size << ", Average Runtime = " << recursive_merge_average_time << " milliseconds" << endl;
+		cout << "[Recursive Merge] " << array_size << ", [Average Runtime] = " << recursive_merge_average_time << " microseconds" << endl;
 		output_file_8 << array_size << " " << recursive_merge_average_time << endl;
 	}
 	output_file_8.close();
 
-	//HeapSort Iterativo em vetor
-	ofstream output_file_9("outputs/array/iteractiveBubble.txt", ofstream::out );
+	//Heap Sort iterativo em vetor
+	ofstream output_file_9("outputs/array/iteractiveHeap.txt", ofstream::out );
 	for(int i = 0; i < size_array_size; i++) {
 		
-		long double iteractive_bubble_average_time = 0.0;
+		long double iteractive_heap_average_time = 0.0;
 		int array_size = sizes[i];
 		int array[array_size];
 	
@@ -286,20 +286,20 @@ int main() {
 		
 			auto final_clock = chrono::high_resolution_clock::now();
 		
-			auto iteractive_bubble_duration = chrono::duration_cast <chrono::milliseconds> (final_clock - inicial_clock).count();
+			auto iteractive_heap_duration = chrono::duration_cast <chrono::microseconds> (final_clock - inicial_clock).count();
 			
-			iteractive_bubble_average_time += iteractive_bubble_duration;
+			iteractive_heap_average_time += iteractive_heap_duration;
 		}
 		
-		iteractive_bubble_average_time /= 5.0;
-		cout << "[Iteractive HeapSort] " << array_size << ", Average Runtime = " << iteractive_bubble_average_time << " milliseconds" << endl;
-		output_file_9 << array_size << " " << iteractive_bubble_average_time << endl;
+		iteractive_heap_average_time /= 5.0;
+		cout << "[Iteractive Heap] " << array_size << ", [Average Runtime] = " << iteractive_heap_average_time << " microseconds" << endl;
+		output_file_9 << array_size << " " << iteractive_heap_average_time << endl;
 	}
 	output_file_9.close();
 
 
 	//Quick Sort recursivo em vetor
-	ofstream output_file_10("outputs/array/recursiveQuick.txt", ofstream::out );
+	ofstream output_file_12("outputs/array/recursiveQuick.txt", ofstream::out );
 	for(int i = 0; i < size_array_size; i++) {
 		
 		long double recursive_quick_average_time = 0.0;
@@ -323,22 +323,22 @@ int main() {
 		}
 		
 		recursive_quick_average_time /= 5.0;
-		cout << "[Recursive Quick] " << array_size << ", Average Runtime = " << recursive_quick_average_time << " microseconds" << endl;
-		output_file_10 << array_size << " " << recursive_quick_average_time << endl;
+		cout << "[Recursive Quick] " << array_size << ", [Average Runtime] = " << recursive_quick_average_time << " microseconds" << endl;
+		output_file_12 << array_size << " " << recursive_quick_average_time << endl;
 	}
-	output_file_10.close();
+	output_file_12.close();
 
 /*
-//BubbleSort Iterativo em lista
-	ofstream output_file_13("outputs/array/iteractiveBubble.txt", ofstream::out );
+	//BubbleSort Iterativo em lista
+	ofstream output_file_13("outputs/list/iteractiveBubble.txt", ofstream::out );
 	for(int i = 0; i < size_array_size; i++) {
 		
-		long double iteractive_bubble_list_average_time = 0.0;
+		long double iteractive_bubble_average_time = 0.0;
 		int array_size = sizes[i];
 		
-        List *list = new List();
+       		List *list = new List();
 		
-        for(int seed = 0; seed < 5; seed++) {	
+        	for(int seed = 0; seed < 5; seed++) {	
 			string data_file_name = "inputs/file-"+to_string(array[i])+"-"+to_string(seed)+".dat";
 		
 			data_file_read(array_size, array, data_file_name.c_str());
@@ -353,17 +353,11 @@ int main() {
 			
 			iteractive_bubble_list_average_time += iteractive_bubble_duration;
 		}
-		
 		iteractive_bubble_list_average_time /= 5.0;
-	
-		list->~List(); // deleta a lista
+		cout << "[Iteractive Bubble] " << array_size << ", [Average Runtime] = " << iteractive_bubble_average_time << " microseconds" << endl;
+		output_file_13 << array_size << " " << iteractive_bubble_average_time << endl;
 	}
-
-    output_file_13.close();
+    	output_file_13.close();
 */
-
-
-
-	return 0;
 }
 
