@@ -29,9 +29,6 @@ void random_data_file_generator(int size_array_size, int *array) {
 	}
 }
 
-
-
-
 void data_file_read(int array_size, int *array, const char *data_file_name) {	
 	ifstream in_file(data_file_name, ios::binary);
 
