@@ -153,7 +153,7 @@ void iteractiveHeapSort(int* array, int size){
 }
 
 int partitionate (int *array, int begin, int end) {
-    int pivot = array[end];
+    int pivot = array[end/2];
     int i = begin-1;
     for (int j = begin; j <= end-1; j++) {
         if (array[j] < pivot) {
@@ -166,9 +166,16 @@ int partitionate (int *array, int begin, int end) {
 }
 
 void recursiveQuickSort (int *array, int begin, int end) {
-    if (begin < end) {
+    while (begin < end) {
         int middle = partitionate(array, begin, end);
-        recursiveQuickSort(array, begin, middle-1);
-        recursiveQuickSort(array, middle+1, end);
+        if (middle-begin < end-middle) {
+            recursiveQuickSort(array, begin, middle-1);
+            begin = middle+1;
+        }
+        else {
+            recursiveQuickSort(array, middle+1, end);
+            end = middle-1;
+        }
     }
 }
+
