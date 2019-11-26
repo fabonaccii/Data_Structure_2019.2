@@ -125,27 +125,6 @@ void recursiveMergeSort (int *array, int begin, int end) {
     }
 }
 
-int partitionate (int *array, int begin, int end) {
-    int pivot = array[end];
-    int i = begin-1;
-    for (int j = begin; j <= end-1; j++) {
-        if (array[j] < pivot) {
-            i++;
-            swap(&array[i], &array[j]);
-        }
-    }
-    swap(&array[i+1], &array[end]);
-    return i+1;
-}
-
-void recursiveQuickSort (int *array, int begin, int end) {
-    if (begin < end) {
-        int middle = partitionate(array, begin, end);
-        recursiveQuickSort(array, begin, middle-1);
-        recursiveQuickSort(array, middle+1, end);
-    }
-}
-
 void maxHeap(int* array, int size, int index){
     int largest = index;
     int left = 2 * index + 1;
@@ -171,4 +150,25 @@ void iteractiveHeapSort(int* array, int size){
         swap(&array[0], &array[i]);
         maxHeap(array, i, 0);
     }    
+}
+
+int partitionate (int *array, int begin, int end) {
+    int pivot = array[end];
+    int i = begin-1;
+    for (int j = begin; j <= end-1; j++) {
+        if (array[j] < pivot) {
+            i++;
+            swap(&array[i], &array[j]);
+        }
+    }
+    swap(&array[i+1], &array[end]);
+    return i+1;
+}
+
+void recursiveQuickSort (int *array, int begin, int end) {
+    if (begin < end) {
+        int middle = partitionate(array, begin, end);
+        recursiveQuickSort(array, begin, middle-1);
+        recursiveQuickSort(array, middle+1, end);
+    }
 }
