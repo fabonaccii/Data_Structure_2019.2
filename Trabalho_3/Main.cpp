@@ -48,8 +48,8 @@ void data_file_read(int array_size, int *array, const char *data_file_name) {
 */
 int main() {
 	
-	int sizes[] = {1000, 5000, 10000, 50000, 100000, 200000, 300000, 400000, 500000, 1000000};
-	int size_array_size = 10;
+	int sizes[] = {1000, 5000, 10000, 50000, 100000, 200000, 300000, 400000, 500000, 750000, 1000000};
+	int size_array_size = 11;
 	
 	random_data_file_generator(size_array_size, sizes);
 	
