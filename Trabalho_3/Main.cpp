@@ -54,7 +54,7 @@ int main() {
 	random_data_file_generator(size_array_size, sizes);
 	
 	cout << "Vetor:" << endl;
-/*
+
 	//Bubble Sort iterativo em vetor
 	ofstream output_file_1("outputs/array/iterativeBubble.txt", ofstream::out );
 	for(int i = 0; i < size_array_size; i++) {
@@ -144,7 +144,7 @@ int main() {
 		output_file_3 << array_size << " " << iterative_insertion_average_time << endl;
 	}
 	output_file_3.close();
-*/
+
 	//Insertion Sort recursivo em vetor
 	ofstream output_file_4("outputs/array/recursiveInsertion.txt", ofstream::out );
 	for(int i = 0; i < size_array_size; i++) {
@@ -174,7 +174,7 @@ int main() {
 		output_file_4 << array_size << " " << recursive_insertion_average_time << endl;
 	}
 	output_file_4.close();
-/*
+
 	//Selection Sort iterativo em vetor
 	ofstream output_file_5("outputs/array/iterativeSelection.txt", ofstream::out );
 	for(int i = 0; i < size_array_size; i++) {
@@ -250,7 +250,7 @@ int main() {
 			
 			auto inicial_clock = chrono::high_resolution_clock::now();
 
-			iterativeMergeSort(array, 0, array_size-1);
+			iterativeMergeSort(array, array_size);
 		
 			auto final_clock = chrono::high_resolution_clock::now();
 		
@@ -414,36 +414,38 @@ int main() {
 		output_file_12 << array_size << " " << recursive_quick_average_time << endl;
 	}
 	output_file_12.close();
-*/
+
 	cout << endl << "Lista:" << endl;
-/*
+
 	//BubbleSort Iterativo em lista
 	ofstream output_file_13("outputs/list/iterativeBubble.txt", ofstream::out );
 	for(int i = 0; i < size_array_size; i++) {
 		
 		long double iterative_bubble_average_time = 0.0;
 		int array_size = sizes[i];
+		int array[array_size];
 		
-       		List *list = new List();
+       	List *list = new List();
 		
-        	for(int seed = 0; seed < 5; seed++) {	
+        for(int seed = 0; seed < 5; seed++) {	
 			string data_file_name = "inputs/file-"+to_string(array[i])+"-"+to_string(seed)+".dat";
 		
 			data_file_read(array_size, array, data_file_name.c_str());
 			
 			auto inicial_clock = chrono::high_resolution_clock::now();
-			list->bubbleSort(array, array_size);
+			
+			list->bubbleSort();
 		
 			auto final_clock = chrono::high_resolution_clock::now();
 		
 			auto iterative_bubble_duration = chrono::duration_cast <chrono::microseconds> (final_clock - inicial_clock).count();
 			
-			iterative_bubble_list_average_time += iterative_bubble_duration;
+			iterative_bubble_average_time += iterative_bubble_duration;
 		}
-		iterative_bubble_list_average_time /= 5.0;
+		iterative_bubble_average_time /= 5.0;
 		cout << "[Iterative Bubble] " << array_size << ", [Average Runtime] = " << iterative_bubble_average_time << " microseconds" << endl;
 		output_file_13 << array_size << " " << iterative_bubble_average_time << endl;
 	}
     	output_file_13.close();
-*/
+
 }
