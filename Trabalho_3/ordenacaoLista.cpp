@@ -1,7 +1,7 @@
 #include <iostream>
 #include "ordenacaoLista.h"
 #include <climits>
-#include "List.h"
+
 using namespace std;
 
 struct Node {
@@ -44,7 +44,7 @@ int List::pop_back() {
     }
     return INT_MIN;
 }
-
+/*
 void List::insert_after (int key, int index) {
     if (index >= 0 && index < size()) {
         Node *aux = head->next;
@@ -58,7 +58,7 @@ void List::insert_after (int key, int index) {
         aux->next = added;
     }
 }
-
+*/
 
 void List::print() {
     Node *aux = head->next;
@@ -105,9 +105,11 @@ void List::clear() {
 
 
 
-void listBubbleSort(Node* list) {
+void List::listbubbleSort() {
+    
     //Verifica se a lista possui apenas um elemento
-    if(list->next== list && list->prev ==list){
+    Node* list = head;
+    if(list->next== list && list->next == list){
         return;
     }
     /*
@@ -127,9 +129,37 @@ void listBubbleSort(Node* list) {
     }
 }
 
-void listInsertionSort () {
 
+//Não está funcionando
+void List::listInsertionSort () {
+    //se a lista estiver vazia:
+    Node* list = head;
+    if(list->next== list && list->prev ==list){
+        return;
+    }
+
+    int Key, i, j;
+    Node* last = list->prev;
+    Node* aux = list->next;
+    
+    //descobrir o tamanho da lista
+    int count = size();
+
+    aux = list->next;
+    for(j = 1; i<count;j++){
+        Key = aux->key;
+        i = j - 1;
+        aux = aux->next;
+        while(i>=0 && aux->key > Key){
+            aux->key = aux->key;
+            
+            i--;
+        }
+    aux->key = Key;
+    aux = aux->next;
+    }
 }
+
 
 void listSelectionSort () {
 
