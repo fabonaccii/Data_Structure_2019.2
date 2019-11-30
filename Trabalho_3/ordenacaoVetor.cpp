@@ -116,16 +116,13 @@ void merge (int *array, int begin, int middle, int end) {
 }
 
 void iterativeMergeSort (int *array, int size) {
-   int curr_size;
-   int left_start;
-  
-   for (curr_size = 1; curr_size <= size-1; curr_size *= 2) { 
-       for (left_start = 0; left_start < size-1; left_start += 2*curr_size) { 
-           int mid = (left_start+curr_size-1, size-1) ? left_start+curr_size-1 : size-1;
-           int right_end = (left_start+2*curr_size-1, size-1) ? left_start+2*curr_size-1 : size-1; 
-           merge(array, left_start, mid, right_end); 
-       } 
-   } 
+   for (int curr_size = 1; curr_size <= size-1; curr_size *= 2) { 
+       for (int left_start = 0; left_start < size-1; left_start += 2*curr_size) { 
+           int middle = (left_start+curr_size-1 < size-1) ? left_start+curr_size-1 : size-1;
+           int right_end = (left_start+2*curr_size-1 < size-1) ? left_start+2*curr_size-1 : size-1; 
+           merge(array, left_start, middle, right_end); 
+       }
+    }
 }
 
 void recursiveMergeSort (int *array, int begin, int end) {
@@ -165,7 +162,7 @@ void iterativeHeapSort(int* array, int size){
 }
 
 int partitionate (int *array, int begin, int end) {
-    int pivot = array[end/2];
+    int pivot = array[end];
     int i = begin-1;
     for (int j = begin; j <= end-1; j++) {
         if (array[j] < pivot) {
@@ -181,7 +178,7 @@ void iterativeQuickSort(int *array, int begin, int end) {
     int stack[end-begin+1];   
     int top = 0; 
     stack[top] = begin; 
-    stack[top++] = end; 
+    stack[++top] = end; 
   
     while (top >= 0) { 
         end = stack[top--]; 
