@@ -105,11 +105,11 @@ void List::clear() {
 
 
 
-void List::listbubbleSort() {
+void List::bubbleSort() {
     
     //Verifica se a lista possui apenas um elemento
     Node* list = head;
-    if(list->next== list && list->next == list){
+    if(list->next == list && list->prev == list){
         return;
     }
     /*
@@ -131,39 +131,55 @@ void List::listbubbleSort() {
 
 
 //Não está funcionando
-void List::listInsertionSort () {
+void List::insertionSort () {
     //se a lista estiver vazia:
     Node* list = head;
     if(list->next== list && list->prev ==list){
         return;
     }
 
-    int Key, i, j;
-    Node* last = list->prev;
-    Node* aux = list->next;
-    
-    //descobrir o tamanho da lista
-    int count = size();
-
-    aux = list->next;
-    for(j = 1; i<count;j++){
-        Key = aux->key;
-        i = j - 1;
-        aux = aux->next;
-        while(i>=0 && aux->key > Key){
-            aux->key = aux->key;
-            
-            i--;
+    //Se a lista tiver 2 elementos na lista
+    if((list->next)->next == list){
+        if(list->next->key > (list->next)->next->key){
+            swap(list->next->key, (list->next)->next->key);
+            return;
         }
-    aux->key = Key;
-    aux = aux->next;
     }
-}
 
 
-void listSelectionSort () {
+    //Quando a lista possuir 3 ou mais elementos
+    for(Node* aux = (list->next)->next; aux!= list; aux = aux->next){
+        int Key_aux = aux->key;
+        Node* aux2 = list->next;
+        while(aux2->key >= list->next->key && aux2->key > Key_aux){
+            aux2->next->key = aux2->key;
+            aux2 = aux2->prev;
+        }
+        aux2->next->key = Key_aux;
+        aux2 = aux2->next;
+    }
+    
+} 
+    
+    /*
+    for(Node* aux = list->next; aux!=list; aux = aux->next){
+        Node* aux_prev = list->prev;
+        Node* aux_next = list->next;
 
-}
+        while(aux_next->key < aux_prev->key && aux_prev->next != list){
+
+                
+
+
+        }
+
+    
+    }*/
+
+
+    void listSelectionSort () {
+
+    }
 
 void listMergeSort () {
 

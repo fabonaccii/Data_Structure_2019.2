@@ -54,10 +54,10 @@ class List {
         bool is_empty();
 
         //Bubble Sort
-        void listbubbleSort ();
+        void bubbleSort ();
         
         //Insertion Sort
-        void listInsertionSort ();
+        void insertionSort ();
 
         //Selection Sort
         //void selectionSort (List *list);
