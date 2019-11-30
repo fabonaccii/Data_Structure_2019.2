@@ -26,7 +26,7 @@ void recursiveSelectionSort (int* array, int size);
 void merge (int *array, int begin, int middle, int end);
 
 //Merge Sort iterativo
-void iterativeMergeSort ();
+void iterativeMergeSort (int *array, int size);
 
 //Merge Sort recursivo
 void recursiveMergeSort (int *array, int begin, int end);
