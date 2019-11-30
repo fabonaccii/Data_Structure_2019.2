@@ -140,7 +140,7 @@ void buildHeap (int *array, int size) {
             swap(&array[a/2], &array[a]);
 }
 
-void sieve(int* array, int size){
+void sieve (int* array, int size){
     for(int k = 2; k <= size; k = k*2) {
         if (array[k] < array[k+1] && k < size)
             k++;
@@ -151,7 +151,7 @@ void sieve(int* array, int size){
     }
 }
 
-void iterativeHeapSort(int* array, int size){
+void iterativeHeapSort (int* array, int size){
     buildHeap(array,size);
     int x = size;
     while(x >= 2){
