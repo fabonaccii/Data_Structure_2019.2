@@ -38,9 +38,6 @@ void sieve (int *array, int size);
 //Heap Sort iterativo
 void iterativeHeapSort (int *array, int size);
 
-//Heap Sort recursivo
-void recursiveHeapSort ();
-
 //Funcão auxiliar do Quick Sort
 int partitionate (int *array, int begin, int end);
 
