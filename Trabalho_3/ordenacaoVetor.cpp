@@ -55,15 +55,14 @@ void recursiveInsertionSort (int* array, int size) {
     //se for igual a 0, o vetor está vazio, logo não há nada a fazer.
     if(size <= 1)
         return;
-
-    recursiveInsertionSort(array, size-1);
     
+    recursiveInsertionSort(array, size-1);
+
     int k = size-2; 
     int aux = array[size-1];
-
-    while(array[k] > aux && k >= 0) {
+    
+    for(; array[k] > aux && k >= 0; k--) {
         array[k+1] = array[k];
-        k--;
     }
     array[k+1] = aux;
 }
