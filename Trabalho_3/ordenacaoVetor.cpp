@@ -168,6 +168,30 @@ int partitionate (int *array, int begin, int end) {
     return i+1;
 }
 
+void iterativeQuickSort(int *array, int begin, int end) { 
+    int stack[end-begin+1];   
+    int top = 0; 
+    stack[top] = begin; 
+    stack[top++] = end; 
+  
+    while (top >= 0) { 
+        end = stack[top--]; 
+        begin = stack[top--]; 
+  
+        int middle = partitionate(array, begin, end); 
+  
+        if (middle-1 > begin) { 
+            stack[++top] = begin; 
+            stack[++top] = middle-1; 
+        } 
+  
+        if (middle+1 < end) { 
+            stack[++top] = middle+1; 
+            stack[++top] = end; 
+        } 
+    } 
+} 
+
 void recursiveQuickSort (int *array, int begin, int end) {
     while (begin < end) {
         int middle = partitionate(array, begin, end);
