@@ -6,13 +6,6 @@
 #include "ordenacaoLista.h"
 using namespace std;
 
-struct Node {
-    int key;
-    Node *next;
-    Node *prev;
-};
-
-
 void random_data_file_generator(int size_array_size, int *array) {
 	for(int i = 0; i < size_array_size; i++) {
 		for(int seed = 0; seed < 5; seed++) {
@@ -38,14 +31,6 @@ void data_file_read(int array_size, int *array, const char *data_file_name) {
 	in_file.close();
 }
 
-/*void data_file_read_list(int array_size, Node* list , const char *data_file_name){	
-	ifstream in_file(data_file_name, ios::binary);
-	for (int i = 0; i < array_size; i++)
-		in_file.read((char*)&array[i], sizeof(int));
-		(list->next)->;
-	in_file.close();
-}
-*/
 int main() {
 	
 	int sizes[] = {1000, 5000, 10000, 50000, 100000, 200000, 300000, 400000, 500000, 750000, 1000000};
@@ -447,5 +432,4 @@ int main() {
 		output_file_13 << array_size << " " << iterative_bubble_average_time << endl;
 	}
     	output_file_13.close();
-
 }
