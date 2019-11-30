@@ -44,7 +44,7 @@ void recursiveHeapSort ();
 int partitionate (int *array, int begin, int end);
 
 //Quick Sort iterativo
-void iterativeQuickSort ();
+void iterativeQuickSort (int *array, int begin, int end);
 
 //Quick Sort recursivo
 void recursiveQuickSort (int *array, int begin, int end);
