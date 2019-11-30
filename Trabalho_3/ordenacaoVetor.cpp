@@ -7,7 +7,7 @@ void swap (int* x, int* y) {
     *y = z;
 }
 
-void iteractiveBubbleSort (int *array, int size) {
+void iterativeBubbleSort (int *array, int size) {
     bool swapped;
     for (int i = 0; i < size-1; i++) {
         swapped = false;
@@ -31,13 +31,13 @@ void recursiveBubbleSort (int *array, int size) {
             swap(&array[i], &array[i+1]);
             swapped = true;
         }
-    
     if (swapped == false)
         return;
+        
     recursiveBubbleSort(array, size-1);
 }
 
-void iteractiveInsertionSort (int *array, int size) {
+void iterativeInsertionSort (int *array, int size) {
     for (int i = 1; i < size; i++) {
         int aux = array[i];
         int j = i-1;
@@ -55,11 +55,11 @@ void recursiveInsertionSort (int* array, int size) {
     //se for igual a 0, o vetor está vazio, logo não há nada a fazer.
     if(size <= 1)
         return;
+
+    recursiveInsertionSort(array, size-1);
     
     int k = size-2; 
     int aux = array[size-1];
-
-    recursiveInsertionSort(array, size-1);
 
     while(array[k] > aux && k >= 0) {
         array[k+1] = array[k];
@@ -68,7 +68,7 @@ void recursiveInsertionSort (int* array, int size) {
     array[k+1] = aux;
 }
 
-void iteractiveSelectionSort (int *array, int size) {
+void iterativeSelectionSort (int *array, int size) {
     for (int i = 0; i < size; i++) {
         int minor = i;
         for (int j = i+1; j < size; j++) {     
@@ -88,7 +88,8 @@ void recursiveSelectionSort (int* array, int size) {
         if (array[i] > array[major])
             major = i;
     }
-    swap (&array[size-1], &array[major]);
+    if (array[size-1] != array[major])
+        swap (&array[size-1], &array[major]);
 
     recursiveSelectionSort(array, size-1);
 }
@@ -96,10 +97,9 @@ void recursiveSelectionSort (int* array, int size) {
 
 void merge (int *array, int begin, int middle, int end) {
     int iAux, jAux, kAux;
-    int *aux_array = new int[end-begin+1]; //Vetor auxiliar
+    int *aux_array = new int[end-begin+1];
     iAux = begin; jAux = middle+1; kAux = 0;
 
-    //Intercala array[begin..middle] e array[middle+1..end]
     while (iAux <= middle && jAux <= end) {
         if (array[iAux] <= array[jAux])
             aux_array[kAux++] = array[iAux++];
@@ -109,11 +109,14 @@ void merge (int *array, int begin, int middle, int end) {
     while (iAux <= middle) aux_array[kAux++] = array[iAux++];
     while (jAux <= end) aux_array[kAux++] = array[jAux++];
 
-    //Copia vetor ordenado aux para o vetor array
     for (iAux = begin; iAux <= end; iAux++)
         array[iAux] = aux_array[iAux-begin];
 
     delete[] aux_array;
+}
+
+void iterativeMergeSort (int *array, int size) {
+    
 }
 
 void recursiveMergeSort (int *array, int begin, int end) {
@@ -142,7 +145,7 @@ void maxHeap(int* array, int size, int index){
     }
 }
 
-void iteractiveHeapSort(int* array, int size){
+void iterativeHeapSort(int* array, int size){
     for (int i = size / 2 - 1; i >= 0; i--)
         maxHeap(array, size, i);
 
