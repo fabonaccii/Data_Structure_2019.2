@@ -5,19 +5,19 @@
 void swap (int* x, int* y);
 
 //Bubble Sort iterativo
-void iteractiveBubbleSort (int* array, int size);
+void iterativeBubbleSort (int* array, int size);
 
 //Bubble Sort recursivo
 void recursiveBubbleSort (int* array, int size);
 
 //Insertion Sort iterativo
-void iteractiveInsertionSort (int* array, int size);
+void iterativeInsertionSort (int* array, int size);
 
 //Insertion Sort recursivo
 void recursiveInsertionSort (int* array, int size);
 
 //Selection Sort iterativo
-void iteractiveSelectionSort (int* array, int size);
+void iterativeSelectionSort (int* array, int size);
 
 //Selection Sort recursivo
 void recursiveSelectionSort (int* array, int size);
@@ -26,7 +26,7 @@ void recursiveSelectionSort (int* array, int size);
 void merge (int *array, int begin, int middle, int end);
 
 //Merge Sort iterativo
-void iteractiveMergeSort ();
+void iterativeMergeSort ();
 
 //Merge Sort recursivo
 void recursiveMergeSort (int *array, int begin, int end);
@@ -35,7 +35,7 @@ void recursiveMergeSort (int *array, int begin, int end);
 void maxHeap (int * array, int size, int index);
 
 //Heap Sort iterativo
-void iteractiveHeapSort (int *array, int size);
+void iterativeHeapSort (int *array, int size);
 
 //Heap Sort recursivo
 void recursiveHeapSort ();
@@ -44,7 +44,7 @@ void recursiveHeapSort ();
 int partitionate (int *array, int begin, int end);
 
 //Quick Sort iterativo
-void iteractiveQuickSort ();
+void iterativeQuickSort ();
 
 //Quick Sort recursivo
 void recursiveQuickSort (int *array, int begin, int end);
