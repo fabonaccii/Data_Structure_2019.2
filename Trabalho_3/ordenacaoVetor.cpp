@@ -115,11 +115,11 @@ void merge (int *array, int begin, int middle, int end) {
 }
 
 void iterativeMergeSort (int *array, int size) {
-   for (int curr_size = 1; curr_size <= size-1; curr_size *= 2) { 
-       for (int left_start = 0; left_start < size-1; left_start += 2*curr_size) { 
-           int middle = (left_start+curr_size-1 < size-1) ? left_start+curr_size-1 : size-1;
-           int right_end = (left_start+2*curr_size-1 < size-1) ? left_start+2*curr_size-1 : size-1; 
-           merge(array, left_start, middle, right_end); 
+   for (int actual_size = 1; actual_size <= size-1; actual_size *= 2) { 
+       for (int left = 0; left < size-1; left += 2*actual_size) { 
+           int middle = (left+actual_size-1 < size-1) ? left+actual_size-1 : size-1;
+           int right = (left+2*actual_size-1 < size-1) ? left+2*actual_size-1 : size-1; 
+           merge(array, left, middle, right); 
        }
     }
 }
