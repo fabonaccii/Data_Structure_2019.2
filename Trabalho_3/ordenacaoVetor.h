@@ -1,3 +1,12 @@
+/* 
+Aluno: Alysson Alexandre de Oliveira Araújo
+Matricula: 474084
+*/
+/* 
+Aluno: Fábio Luz Duarte Filho
+Matricula: 474027
+*/
+
 #ifndef ORDENACAO_VETOR_H
 #define ORDENACAO_VETOR_H
 
