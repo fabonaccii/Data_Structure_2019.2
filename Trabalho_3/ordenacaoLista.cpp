@@ -192,3 +192,19 @@ void listHeapSort () {
 void listQuickSort () {
 
 }
+
+void List::data_file_read_list(int array_size, int *array, const char *data_file_name) {	
+	ifstream in_file(data_file_name, ios::binary);
+	
+    Node* list = new Node;
+    list = head;
+	
+	for (int i = 0; i < array_size; i++){
+		in_file.read((char*)&array[i], sizeof(int));
+		push_back(array[i]);
+	}
+
+}
+
+
+
