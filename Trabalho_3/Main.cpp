@@ -430,6 +430,7 @@ int main() {
         iterative_bubble_average_time /= 5.0;
         cout << "[Iterative Bubble] " << array_size << ", [Average Runtime] = " << iterative_bubble_average_time << " microseconds" << endl;
         output_file_13 << array_size << " " << iterative_bubble_average_time << endl;
-    }
+		list->~List();
+	}
         output_file_13.close();
 }
