@@ -1,8 +1,7 @@
 /* 
 Aluno: Alysson Alexandre de Oliveira Araújo
 Matricula: 474084
-*/
-/* 
+ 
 Aluno: Fábio Luz Duarte Filho
 Matricula: 474027
 */
@@ -318,36 +317,6 @@ int main() {
 		output_file_9 << array_size << " " << iterative_heap_average_time << endl;
 	}
 	output_file_9.close();
-
-	//Heap Sort recursivo em vetor
-	ofstream output_file_10("outputs/array/recursiveHeap.txt", ofstream::out );
-	for(int i = 0; i < size_array_size; i++) {
-		
-		long double recursive_heap_average_time = 0.0;
-		int array_size = sizes[i];
-		int array[array_size];
-	
-		for(int seed = 0; seed < 5; seed++) {	
-			string data_file_name = "inputs/file-"+to_string(array[i])+"-"+to_string(seed)+".dat";
-		
-			data_file_read(array_size, array, data_file_name.c_str());
-			
-			auto inicial_clock = chrono::high_resolution_clock::now();
-
-			recursiveHeapSort(array, array_size);
-		
-			auto final_clock = chrono::high_resolution_clock::now();
-		
-			auto recursive_heap_duration = chrono::duration_cast <chrono::microseconds> (final_clock - inicial_clock).count();
-			
-			recursive_heap_average_time += recursive_heap_duration;
-		}
-		
-		recursive_heap_average_time /= 5.0;
-		cout << "[Recursive Heap] " << array_size << ", [Average Runtime] = " << recursive_heap_average_time << " microseconds" << endl;
-		output_file_10 << array_size << " " << recursive_heap_average_time << endl;
-	}
-	output_file_10.close();
 
 	//Quick Sort iterativo em vetor
 	ofstream output_file_11("outputs/array/iterativeQuick.txt", ofstream::out );

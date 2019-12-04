@@ -184,23 +184,30 @@ int partitionate (int *array, int begin, int end) {
 void iterativeQuickSort(int *array, int begin, int end) { 
     int stack[end-begin+1];   
     int top = 0; 
-    stack[top] = begin; 
-    stack[++top] = end; 
+    stack[top] = begin;
+	top++;
+    stack[top] = end; 
   
     while (top >= 0) { 
-        end = stack[top--]; 
-        begin = stack[top--]; 
+        end = stack[top];
+		top--; 
+        begin = stack[top];
+		top--;
   
         int middle = partitionate(array, begin, end); 
   
         if (middle-1 > begin) { 
-            stack[++top] = begin; 
-            stack[++top] = middle-1; 
+			top++;
+            stack[top] = begin;
+			top++;
+            stack[top] = middle-1; 
         } 
   
         if (middle+1 < end) { 
-            stack[++top] = middle+1; 
-            stack[++top] = end; 
+			top++;
+            stack[top] = middle+1; 
+			top++;
+            stack[top] = end; 
         } 
     } 
 } 

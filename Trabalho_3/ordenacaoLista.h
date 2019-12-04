@@ -26,10 +26,18 @@ class List {
         //Insere um valor na lista
         void push_back (int key);
 
+        bool is_empty();
+
+        //Limpa uma lista
+        void clear();
+
+        //Imprime a lista
+        void print();
+
         //Inserção de elementos de um arquivo para a lista
-        void data_file_read_list(int array_size, int *array, const char *data_file_name);
+        void data_file_read_list (int array_size, int *array, const char *data_file_name);
 
         //Bubble Sort
-        void bubbleSort ();
+        void bubbleSort();
 };
 #endif

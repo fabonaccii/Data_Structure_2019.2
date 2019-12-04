@@ -35,16 +35,44 @@ List::~List() {
 
 
 void List::push_back (int key) {
-        Node *added = new Node;
-        (head->prev)->next = added;
-        added->key = key;
-        added->next = head;
-        added->prev = head->prev;
-        head->prev = added;
+    Node *added = new Node;
+    (head->prev)->next = added;
+    added->key = key;
+    added->next = head;
+    added->prev = head->prev;
+    head->prev = added;
+}
+
+bool List::is_empty() {
+    return (head->next == head);
+}
+
+void List::clear() {
+    if (!is_empty()) {
+        Node *aux_forward;
+        Node *aux_back;
+        while (!is_empty()) {
+            aux_back = head->prev;
+            head->prev = aux_back->prev;
+            aux_forward = head->next;
+            head->next = aux_forward->next;
+            delete aux_forward;
+            if (!is_empty())
+                delete aux_back;
+        }
+    }
+}
+
+void List::print() {
+    Node *aux = head->next;
+    while (aux != head) {
+        cout << aux->key << " ";
+        aux = aux->next;
+    }
+    cout << endl;
 }
 
 void List::bubbleSort() {
-    
     //Verifica se a lista possui apenas um elemento
     Node* list = head;
     if(list->next == list && list->prev == list)
